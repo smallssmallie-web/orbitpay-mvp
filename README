@@ -1,0 +1,16 @@
+# OrbitPay MVP (R0 prototype)
+
+## Run locally
+1. Extract the ZIP or open this folder.
+2. Double-click `index.html` to open it in your browser.
+3. Try adding a demo listing, clicking “I'm interested”, and running the demo checkout.
+
+## Important limitations
+- This is a front-end prototype only.
+- Listings, clicks, feedback and demo checkouts are stored in local browser storage on that device only.
+- Data is not shared with other visitors and can be cleared by the browser.
+- No real payments, accounts, digital delivery, blockchain or cryptocurrency are connected.
+- Never enter payment details or sensitive information.
+
+## Suggested next step
+Show the prototype to creators and ask them to complete a realistic task. Track their feedback separately in a spreadsheet or Google Form. Do not build live payments or a token until you have evidence of demand and have checked applicable legal, tax, security and provider requirements.
