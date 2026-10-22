@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OrbitPay — Creator Commerce</title>
+<meta name="description" content="A simple creator-commerce prototype for showcasing digital products and testing demand.">
+<style>
+:root{--bg:#0b1020;--panel:#121a2d;--panel2:#172239;--line:#283650;--text:#f4f7ff;--muted:#aab7ce;--cyan:#67e8f9;--mint:#6ee7b7;--purple:#a5b4fc;--danger:#fda4af}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top right,#162848 0,transparent 38%),var(--bg);color:var(--text);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+.wrap{width:min(1100px,92%);margin:auto}.top{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:22px 0;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.25rem;letter-spacing:-.04em}.orb{width:35px;height:35px;border:2px solid var(--cyan);border-radius:50%;display:grid;place-items:center;color:var(--cyan);box-shadow:0 0 22px #67e8f933}.pill{font-size:.76rem;border:1px solid #386477;background:#102b3a;color:var(--cyan);padding:5px 9px;border-radius:99px}
+.hero{padding:62px 0 36px;max-width:780px}.eyebrow{color:var(--cyan);font-weight:700;text-transform:uppercase;letter-spacing:.13em;font-size:.76rem}.hero h1{font-size:clamp(2.3rem,6vw,4.5rem);line-height:1.02;letter-spacing:-.06em;margin:12px 0 18px}.hero p{font-size:1.1rem;color:var(--muted);max-width:660px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+button,.button{border:0;border-radius:11px;padding:12px 16px;font-weight:750;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-size:.95rem}.primary{background:var(--cyan);color:#07111d}.secondary{background:#1b2942;color:var(--text);border:1px solid var(--line)}.danger{background:#351d2a;color:var(--danger);border:1px solid #623143}button:hover,.button:hover{filter:brightness(1.08)}button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.notice{margin:18px 0 34px;padding:14px 16px;border:1px solid #65572b;background:#282416;border-radius:12px;color:#f6e7b3;font-size:.9rem}.sectionhead{display:flex;justify-content:space-between;align-items:end;gap:16px;margin:35px 0 16px}.sectionhead h2{margin:0;font-size:1.5rem;letter-spacing:-.03em}.muted{color:var(--muted)}.small{font-size:.85rem}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.card,.panel{background:linear-gradient(160deg,#152039,#101729);border:1px solid var(--line);border-radius:17px;overflow:hidden}.art{height:145px;display:grid;place-items:center;background:linear-gradient(135deg,#172b4d,#163c4b);font-size:3rem}.cardbody{padding:18px}.tag{display:inline-block;color:var(--cyan);font-size:.75rem;font-weight:750;letter-spacing:.06em;text-transform:uppercase}.card h3{margin:7px 0 4px;font-size:1.1rem}.card p{color:var(--muted);font-size:.92rem;min-height:45px}.price{font-size:1.3rem;font-weight:850;margin:12px 0}.cardactions{display:flex;gap:8px;flex-wrap:wrap}.cardactions button{flex:1}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:30px 0}.panel{padding:22px}.panel h2{margin:0 0 6px;font-size:1.25rem}.field{display:grid;gap:6px;margin:13px 0}.field label{font-size:.9rem;font-weight:700}.field input,.field textarea,.field select{width:100%;background:#0b1222;border:1px solid #34435f;color:var(--text);border-radius:10px;padding:12px;font:inherit}.field textarea{min-height:85px;resize:vertical}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}.stat{padding:14px;border:1px solid var(--line);border-radius:12px;background:#0d1526}.stat strong{display:block;font-size:1.5rem}.empty{border:1px dashed #3b4c69;border-radius:14px;padding:24px;color:var(--muted);text-align:center;grid-column:1/-1}
+.shared-card{max-width:720px;margin:30px auto;padding:26px;background:linear-gradient(160deg,#152039,#101729);border:1px solid var(--line);border-radius:18px}.shared-card .price{font-size:1.7rem}.shared-card h2{font-size:1.8rem;margin:8px 0}.shared-card .shared-note{color:var(--muted);font-size:.9rem;margin-top:16px}footer{border-top:1px solid var(--line);margin-top:45px;padding:25px 0 40px;color:var(--muted);font-size:.85rem}.footerrow{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}.modalback{position:fixed;inset:0;background:#02040bc9;display:none;place-items:center;padding:18px;z-index:10}.modalback.open{display:grid}.modal{width:min(460px,100%);background:#111a2e;border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:0 20px 80px #0008}.modal h2{margin-top:0}.modalclose{float:right;background:#202b42;color:var(--text);padding:6px 10px}.modal p{color:var(--muted)}
+@media(max-width:760px){.grid{grid-template-columns:1fr 1fr}.two{grid-template-columns:1fr}.hero{padding-top:42px}}@media(max-width:520px){.grid{grid-template-columns:1fr}.top{align-items:flex-start}.hero h1{font-size:2.7rem}.stats{grid-template-columns:1fr 1fr 1fr}.stat{padding:10px}.stat strong{font-size:1.2rem}}
+</style>
+</head>
+<body>
+<header class="wrap top">
+  <div class="brand"><span class="orb">O</span> orbitpay</div>
+  <span class="pill">EARLY PROTOTYPE</span>
+</header>
+<main class="wrap">
+  <section class="hero">
+    <div class="eyebrow">Creator commerce, simplified</div>
+    <h1>Everything you create.<br><span style="color:var(--cyan)">One link to sell it.</span></h1>
+    <p>Showcase your digital products, services and community offers in one place. Share your page with your audience and find out what they actually want.</p>
+    <div class="actions"><a class="button primary" href="#share-panel">Create your offer link ↓</a><a class="button secondary" href="#products">View sample offers</a></div>
+  </section>
+  <div class="notice"><strong>Prototype mode:</strong> No real payments are processed. Listings created here stay in this browser unless you use the new share-link feature. Share links carry the offer details in the URL; there is no central database yet. Do not enter private or payment information.</div>
+
+  <section id="products">
+    <div class="sectionhead"><div><div class="eyebrow">Discover</div><h2>Creator offers</h2></div><span id="offer-count" class="muted small"></span></div>
+    <div class="grid" id="product-grid"></div>
+  </section>
+
+  <section id="shared-offer" hidden aria-live="polite"></section>
+
+  <section class="two">
+    <div class="panel" id="list-product">
+      <div class="eyebrow">For creators</div><h2>List a product</h2><p class="muted small">Add a sample offer to see how your storefront could work.</p>
+      <form id="product-form">
+        <div class="field"><label for="creator">Creator or brand name</label><input id="creator" maxlength="60" required placeholder="e.g. K's Studio"></div>
+        <div class="field"><label for="product">Product or service name</label><input id="product" maxlength="80" required placeholder="e.g. Beginner beat pack"></div>
+        <div class="field"><label for="category">Category</label><select id="category"><option>Music</option><option>Digital downloads</option><option>Education</option><option>Art & design</option><option>Community</option><option>Services</option><option>Other</option></select></div>
+        <div class="field"><label for="price">Demo price in ZAR (R)</label><input id="price" type="number" min="0" max="1000000" step="0.01" required placeholder="99.00"></div>
+        <div class="field"><label for="description">What does the buyer get?</label><textarea id="description" maxlength="220" required placeholder="Describe the product or service in a sentence."></textarea></div>
+        <button class="primary" type="submit">Add demo listing</button>
+      </form>
+    </div>
+    <div class="panel" id="share-panel">
+      <div class="eyebrow">Main creator tool</div><h2>Make a creator page link</h2>
+      <p class="muted small">Create a public link for one offer. Anyone with the link can view it. Interested visitors can message the creator on WhatsApp. No account or backend required for this test.</p>
+      <div class="field"><label for="share-creator">Creator name</label><input id="share-creator" maxlength="60" placeholder="e.g. K's Studio"></div>
+      <div class="field"><label for="share-whatsapp">WhatsApp number (international format)</label><input id="share-whatsapp" inputmode="tel" maxlength="20" placeholder="e.g. 27821234567"></div>
+      <div class="field"><label for="share-product">Offer name</label><input id="share-product" maxlength="80" placeholder="e.g. Custom beat lease"></div>
+      <div class="field"><label for="share-category">Category</label><select id="share-category"><option>Music</option><option>Digital downloads</option><option>Education</option><option>Art & design</option><option>Community</option><option>Services</option><option>Other</option></select></div>
+      <div class="field"><label for="share-price">Price in ZAR (R)</label><input id="share-price" type="number" min="0" max="1000000" step="0.01" placeholder="150"></div>
+      <div class="field"><label for="share-description">What does the buyer get?</label><textarea id="share-description" maxlength="220" placeholder="Describe what is included."></textarea></div>
+      <button class="primary" id="make-share-link" type="button">Generate shareable offer link</button>
+      <div class="field" id="share-result-wrap" hidden>
+         <label for="share-result">Your share link</label>
+         <input id="share-result" readonly>
+         <button class="secondary" id="copy-share-link" type="button">Copy share link</button>
+         <button class="secondary" id="share-whatsapp-link" type="button">Share link on WhatsApp</button>
+         <button class="secondary" id="copy-promo-text" type="button">Copy promo caption</button>
+       </div>
+      <p id="share-status" class="muted small" aria-live="polite"></p>
+    </div>
+    <div class="panel">
+      <div class="eyebrow">Validation dashboard</div><h2>Interest at a glance</h2><p class="muted small">Local demo metrics from this browser only. These are not real sales or verified users.</p>
+      <div class="stats">
+        <div class="stat"><span class="muted small">Listings</span><strong id="stat-listings">0</strong></div>
+        <div class="stat"><span class="muted small">Interests</span><strong id="stat-interests">0</strong></div>
+        <div class="stat"><span class="muted small">Demo checkouts</span><strong id="stat-checkouts">0</strong></div>
+      </div>
+      <div class="field" style="margin-top:20px"><label for="feedback">What would make this useful to you?</label><textarea id="feedback" placeholder="Write a note for your own testing. Don't include sensitive data."></textarea></div>
+      <button class="secondary" id="save-feedback" type="button">Save local feedback</button>
+      <button class="secondary" id="export-data" type="button" style="margin-top:8px">Export demo data (.json)</button>
+      <button class="danger" id="reset-data" type="button" style="margin-top:8px">Reset this browser's demo data</button>
+      <p id="feedback-status" class="muted small" aria-live="polite"></p>
+    </div>
+  </section>
+</main>
+<footer><div class="wrap footerrow"><span>© <span id="year"></span> OrbitPay — concept prototype</span><span>Built to validate demand before building payments or crypto.</span></div></footer>
+
+<div class="modalback" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal"><button class="modalclose" id="close-modal" aria-label="Close dialog">✕</button><div class="eyebrow">Simulation only</div><h2 id="modal-title">Demo checkout</h2><p id="modal-copy"></p><p><strong>No money will be taken.</strong> This button only records a local prototype interaction. There is no payment provider connected.</p><button class="primary" id="confirm-demo">Confirm demo action</button></div>
+</div>
+<script>
+const KEY = "orbitpay_mvp_v1";
+const seed = [
+ {id:"sample-1",creator:"Nova Sounds",name:"Creator Sample Pack Vol. 01",category:"Music",price:99,description:"A fictional demo pack of sounds for music producers.",emoji:"♫",interests:0,checkouts:0},
+ {id:"sample-2",creator:"The Learning Lab",name:"Study Smarter Mini Guide",category:"Education",price:49,description:"A fictional guide with practical study and planning techniques.",emoji:"✦",interests:0,checkouts:0},
+ {id:"sample-3",creator:"Studio North",name:"Minimal Social Templates",category:"Art & design",price:129,description:"A fictional collection of editable social content templates.",emoji:"◈",interests:0,checkouts:0}
+];
+let data = loadData();
+let activeAction = null;
+function loadData(){
+ try{
+  const raw=localStorage.getItem(KEY);
+  if(raw){const parsed=JSON.parse(raw);if(Array.isArray(parsed.products))return parsed;}
+ }catch(e){}
+ return {products:seed.map(x=>({...x})),feedback:""};
+}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(data));}catch(e){status("Could not save in browser storage. You can still test this session.");}}
+function escapeHTML(value){return String(value).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function money(n){return new Intl.NumberFormat("en-ZA",{style:"currency",currency:"ZAR"}).format(Number(n)||0);}
+function status(message){document.getElementById("feedback-status").textContent=message;}
+function render(){
+ const grid=document.getElementById("product-grid");
+ document.getElementById("offer-count").textContent=data.products.length+" offers";
+ if(!data.products.length){grid.innerHTML='<div class="empty">No offers yet. Add the first demo listing below.</div>';}
+ else{
+  grid.innerHTML=data.products.map(p=>`<article class="card">
+   <div class="art" aria-hidden="true">${escapeHTML(p.emoji||"✧")}</div>
+   <div class="cardbody"><span class="tag">${escapeHTML(p.category)}</span><h3>${escapeHTML(p.name)}</h3>
+   <div class="muted small">by ${escapeHTML(p.creator)}</div><p>${escapeHTML(p.description)}</p>
+   <div class="price">${money(p.price)}</div><div class="cardactions">
+   <button class="secondary" data-action="interest" data-id="${escapeHTML(p.id)}">I'm interested (${p.interests||0})</button>
+   <button class="primary" data-action="checkout" data-id="${escapeHTML(p.id)}">Demo checkout</button></div></div></article>`).join("");
+ }
+ const interests=data.products.reduce((s,p)=>s+(p.interests||0),0);
+ const checkouts=data.products.reduce((s,p)=>s+(p.checkouts||0),0);
+ document.getElementById("stat-listings").textContent=data.products.length;
+ document.getElementById("stat-interests").textContent=interests;
+ document.getElementById("stat-checkouts").textContent=checkouts;
+ document.getElementById("feedback").value=data.feedback||"";
+}
+document.getElementById("product-grid").addEventListener("click",e=>{
+ const btn=e.target.closest("button[data-action]");if(!btn)return;
+ const p=data.products.find(x=>x.id===btn.dataset.id);if(!p)return;
+ if(btn.dataset.action==="interest"){p.interests=(p.interests||0)+1;save();render();status("Interest recorded locally for demo purposes.");}
+ if(btn.dataset.action==="checkout"){activeAction=p.id;document.getElementById("modal-title").textContent="Demo checkout: "+p.name;document.getElementById("modal-copy").textContent="Creator: "+p.creator+" · Demo price: "+money(p.price)+". This is not a real purchase.";document.getElementById("modal").classList.add("open");}
+});
+document.getElementById("close-modal").addEventListener("click",()=>document.getElementById("modal").classList.remove("open"));
+document.getElementById("modal").addEventListener("click",e=>{if(e.target.id==="modal")e.currentTarget.classList.remove("open");});
+document.getElementById("confirm-demo").addEventListener("click",()=>{
+ const p=data.products.find(x=>x.id===activeAction);
+ if(p){p.checkouts=(p.checkouts||0)+1;save();render();status("Demo interaction recorded. No payment was taken.");}
+ document.getElementById("modal").classList.remove("open");
+});
+document.getElementById("product-form").addEventListener("submit",e=>{
+ e.preventDefault();
+ const price=Number(document.getElementById("price").value);
+ if(!Number.isFinite(price)||price<0){status("Enter a valid demo price.");return;}
+ const p={id:"demo-"+Date.now(),creator:document.getElementById("creator").value.trim(),name:document.getElementById("product").value.trim(),category:document.getElementById("category").value,price,description:document.getElementById("description").value.trim(),emoji:"✧",interests:0,checkouts:0};
+ if(!p.creator||!p.name||!p.description){status("Complete all required fields.");return;}
+ data.products.unshift(p);save();render();e.target.reset();status("Demo listing added on this browser. It is not public to other users.");
+});
+document.getElementById("save-feedback").addEventListener("click",()=>{data.feedback=document.getElementById("feedback").value.slice(0,2000);save();status("Feedback saved locally in this browser.");});
+document.getElementById("export-data").addEventListener("click",()=>{
+ const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
+ const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="orbitpay-demo-data.json";a.click();URL.revokeObjectURL(url);status("Demo data export started.");
+});
+document.getElementById("reset-data").addEventListener("click",()=>{
+ if(confirm("Reset all OrbitPay demo listings, interests and feedback stored in this browser?")){
+  data={products:seed.map(x=>({...x})),feedback:""};save();render();status("Demo data reset.");
+ }
+});
+function safeOfferFromHash(){
+ try{
+  const match=location.hash.match(/(?:#|&)offer=([^&]+)/);
+  if(!match)return null;
+  const value=JSON.parse(decodeURIComponent(escape(atob(match[1]))));
+  if(!value||typeof value!=="object")return null;
+  const required=["creator","name","category","description","whatsapp"];
+  if(!required.every(k=>typeof value[k]==="string")||!Number.isFinite(Number(value.price)))return null;
+  return value;
+ }catch(e){return null;}
+}
+function renderSharedOffer(){
+ const offer=safeOfferFromHash();
+ const section=document.getElementById("shared-offer");
+ if(!offer){section.hidden=true;document.getElementById("products").hidden=false;document.querySelector(".two").hidden=false;return;}
+ section.hidden=false;
+ document.getElementById("products").hidden=true;
+ document.querySelector(".two").hidden=true;
+ document.querySelector(".hero").hidden=true;
+ const number=String(offer.whatsapp).replace(/\D/g,"");
+ const msg=encodeURIComponent("Hi "+offer.creator+"! I'm interested in "+offer.name+" that I found on OrbitPay. Could you share more details?");
+ const whatsappUrl="https://wa.me/"+number+"?text="+msg;
+ section.innerHTML=`<article class="shared-card"><div class="eyebrow">Creator offer</div><span class="tag">${escapeHTML(offer.category)}</span><h2>${escapeHTML(offer.name)}</h2><p class="muted">by ${escapeHTML(offer.creator)}</p><p>${escapeHTML(offer.description)}</p><div class="price">${money(offer.price)}</div><a class="button primary" href="${whatsappUrl}" target="_blank" rel="noopener noreferrer">I'm interested — message creator</a><p class="shared-note">This is an early OrbitPay prototype. Contact the creator directly to confirm availability, delivery and payment. OrbitPay does not process payments or guarantee the offer.</p></article>`;
+ document.title=offer.name+" — OrbitPay";
+}
+document.getElementById("make-share-link").addEventListener("click",()=>{
+ const creator=document.getElementById("share-creator").value.trim();
+ const whatsapp=document.getElementById("share-whatsapp").value.trim().replace(/[^\d+]/g,"").replace(/^\+/,"");
+ const name=document.getElementById("share-product").value.trim();
+ const category=document.getElementById("share-category").value;
+ const price=Number(document.getElementById("share-price").value);
+ const description=document.getElementById("share-description").value.trim();
+ const statusEl=document.getElementById("share-status");
+ if(!creator||!name||!description||!whatsapp||document.getElementById("share-price").value.trim()===""||!Number.isFinite(price)||price<0){statusEl.textContent="Complete all fields and enter a WhatsApp number with country code (for South Africa, start with 27).";return;}
+ if(!/^\d{8,15}$/.test(whatsapp)){statusEl.textContent="Check the WhatsApp number. Use digits with the country code, e.g. 27821234567.";return;}
+ const offer={creator,whatsapp,name,category,price,description};
+ const encoded=btoa(unescape(encodeURIComponent(JSON.stringify(offer))));
+ const url=location.href.split("#")[0]+"#offer="+encodeURIComponent(encoded);
+ document.getElementById("share-result").value=url;
+ document.getElementById("share-result-wrap").hidden=false;
+ statusEl.textContent="Link generated. Test it in a private/incognito window before sharing.";
+});
+document.getElementById("copy-share-link").addEventListener("click",async()=>{
+ const field=document.getElementById("share-result");
+ try{await navigator.clipboard.writeText(field.value);document.getElementById("share-status").textContent="Link copied. Open it in a private window to test the visitor view.";}
+ catch(e){field.focus();field.select();document.getElementById("share-status").textContent="Select and copy the link above, then test it in a private window.";}
+});
+function buildPromoCaption(){
+ const creator=document.getElementById("share-creator").value.trim();
+ const name=document.getElementById("share-product").value.trim();
+ const price=Number(document.getElementById("share-price").value);
+ const link=document.getElementById("share-result").value;
+ return `Check out ${name} by ${creator} — ${money(price)}. See the details and contact me here: ${link}`;
+}
+document.getElementById("share-whatsapp-link").addEventListener("click",()=>{
+ const link=document.getElementById("share-result").value;
+ if(!link){document.getElementById("share-status").textContent="Generate your offer link first.";return;}
+ window.open("https://wa.me/?text="+encodeURIComponent(buildPromoCaption()),"_blank","noopener,noreferrer");
+});
+document.getElementById("copy-promo-text").addEventListener("click",async()=>{
+ const caption=buildPromoCaption();
+ try{await navigator.clipboard.writeText(caption);document.getElementById("share-status").textContent="Promo caption copied. Paste it into your social post or message.";}
+ catch(e){window.prompt("Copy this promo caption:",caption);document.getElementById("share-status").textContent="Copy the caption from the prompt and paste it into your post or message.";}
+});
+document.getElementById("year").textContent=new Date().getFullYear();
+render();
+renderSharedOffer();
+</script>
+</body>
+</html>
